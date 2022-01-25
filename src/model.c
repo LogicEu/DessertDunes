@@ -32,7 +32,7 @@ static inline void vmesh_bind(unsigned int id, vmesh_t* mesh)
 
 static inline void vmesh_perlin(vmesh_t* mesh, const vec2 off, const float mult)
 {
-    const unsigned int seed = game_seed_get();
+    const unsigned int seed = worldgen_seed();
     for (unsigned int i = 0; i < mesh->vertices->used; i++) {
         vertex_t* v = (vertex_t*)array_index(mesh->vertices, i);
         vec3 pos = v->position;

@@ -5,6 +5,8 @@ static Model3D model;
 static skybox_t skybox;
 static Cam3D cam;
 
+static Model3D* models;
+
 static inline bmp_t bmp_gradient(const int gradientSize)
 {
     bmp_t bmp = bmp_new(gradientSize, 1, 4);
@@ -27,6 +29,11 @@ void scene_init()
     skybox = skybox_space(1080, 1080, 998, 1000, 1);
     
     bmp_free(&bmp);
+}
+
+void scene_deinit()
+{
+    model_free(&model);
 }
 
 void scene_render()

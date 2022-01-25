@@ -6,14 +6,9 @@ static inline void app_init(const unsigned int* seedptr)
     glee_init();
     glee_window_create("DessertDunes", 800, 600, 0, 0);
 
+    worldgen_init(seedptr);
     renderer_init();
-    game_init(seedptr);
-}
-
-static inline void app_update(float deltaTime)
-{
-    game_update(deltaTime);
-    scene_render();
+    runtime_init();
 }
 
 static inline void app_run()
@@ -22,13 +17,15 @@ static inline void app_run()
     while (glee_window_is_open()) {
         glee_screen_clear();
         if (glee_key_pressed(GLFW_KEY_ESCAPE)) break;
-        app_update(glee_time_delta(&iTime));
+        runtime_update(glee_time_delta(&iTime));
         glee_screen_refresh();
     }
 }
 
 static inline void app_deinit()
 {
+    scene_deinit();
+    ui_deinit();
     glee_deinit();
 }
 

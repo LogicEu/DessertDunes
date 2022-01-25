@@ -16,3 +16,9 @@
 [submodule "gleex"]
 	path = gleex
 	url = git@github.com:LogicEu/gleex.git
+[submodule "glui"]
+	path = glui
+	url = git@github.com:LogicEu/glui.git
+[submodule "photon"]
+	path = photon
+	url = git@github.com:LogicEu/photon.git

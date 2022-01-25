@@ -10,7 +10,7 @@ extern "C" {
  ****************/
 
 #include <mass.h>
-#include <gleex.h>
+#include <glui.h>
 
 typedef struct Cam3D {
     vec3 position;
@@ -48,12 +48,30 @@ void render_model(const Model3D* model, vec3 position);
 void render_skybox(const skybox_t* skybox);
 void renderer_switch();
 
+void ui_init();
+void ui_deinit();
+void ui_render();
+void ui_switch(unsigned int mode);
+void ui_push(wxGroup* group);
+
 void scene_init();
 void scene_render();
+void scene_deinit();
 
-void game_init(const unsigned int* seedptr);
+void editor_update(float deltaTime);
+void editor_init();
+
+void worldgen_init(const unsigned int* restrict seedptr);
+unsigned int worldgen_seed();
+
+vec2 runtime_mouse();
+void runtime_update(float deltaTime);
+void runtime_init();
+
+void game_init();
 void game_update(float deltaTime);
 unsigned int game_seed_get();
+void game_mode_switch();
 
 // ...
 

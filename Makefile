@@ -4,7 +4,7 @@ STD=-std=c99
 WFLAGS=-Wall -Wextra
 OPT=-O2
 IDIR=-I. -Iinclude
-SLIBS=utopia fract mass glee gleex imgtool
+SLIBS=utopia fract photon mass glee gleex glui imgtool
 DLIBS=glfw z png jpeg freetype
 CC=gcc
 NAME=DessertDunes

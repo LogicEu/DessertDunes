@@ -20,9 +20,11 @@ flags=(
 inc=(
     -Imass/
     -Ifract/
+    -Iphoton/
     -Iutopia/
     -Iglee/
     -Igleex/
+    -Iglui/
     -Iimgtool/
 )
 
@@ -33,8 +35,10 @@ lib=(
     -lutopia
     -lglee
     -lgleex
+    -lglui
     -limgtool
     -lmass
+    -lphoton
     $lflag
     -lglfw
     -lfreetype
