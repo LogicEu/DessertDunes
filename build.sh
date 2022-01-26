@@ -26,6 +26,7 @@ inc=(
     -Igleex/
     -Iglui/
     -Iimgtool/
+    -Iethnic/
 )
 
 lib=(
@@ -39,6 +40,7 @@ lib=(
     -limgtool
     -lmass
     -lphoton
+    -lethnic
     $lflag
     -lglfw
     -lfreetype

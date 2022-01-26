@@ -20,6 +20,13 @@ void ui_init()
     );
 
     wxdir = wxDirectoryCreate();
+    wxGroup wxgr = wxGroupCreate();
+    wxDirectoryPushGroup(&wxdir, &wxgr);
+}
+
+wxGroup* ui_group(unsigned int mode)
+{
+    return &wxdir.groups[mode];
 }
 
 void ui_push(wxGroup* group)

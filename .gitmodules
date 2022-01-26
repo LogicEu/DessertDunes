@@ -22,3 +22,6 @@
 [submodule "photon"]
 	path = photon
 	url = git@github.com:LogicEu/photon.git
+[submodule "ethnic"]
+	path = ethnic
+	url = git@github.com:LogicEu/ethnic.git

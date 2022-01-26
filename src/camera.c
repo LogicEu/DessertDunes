@@ -22,3 +22,11 @@ void cam3D_update(Cam3D* cam, vec2 dir)
     cam->up = vec3_cross(cam->right, cam->direction);
     cam->view = mat4_look_at_RH(cam->position, vec3_add(cam->position, cam->direction), cam->up);
 }
+
+void cam3D_update_smooth(Cam3D* cam, vec2 dir)
+{
+    cam->direction = vec3_lerp(cam->direction, vec3_new(cos(dir.y) * sin(dir.x), sin(dir.y), cos(dir.y) * cos(dir.x)), 0.1);
+    cam->right = vec3_new(sin(dir.x - HALF_PI), 0.0f, cos(dir.x - HALF_PI));
+    cam->up = vec3_cross(cam->right, cam->direction);
+    cam->view = mat4_look_at_RH(cam->position, vec3_add(cam->position, cam->direction), cam->up);
+}

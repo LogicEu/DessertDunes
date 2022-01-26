@@ -1,10 +1,11 @@
 #include <DessertDunes.h>
 #include <stdlib.h>
+#include <string.h>
 
-static inline void app_init(const unsigned int* seedptr)
+static inline void app_init(unsigned int fullscreen, const unsigned int* seedptr)
 {
     glee_init();
-    glee_window_create("DessertDunes", 800, 600, 0, 0);
+    glee_window_create("DessertDunes", 800, 600, fullscreen, 0);
 
     worldgen_init(seedptr);
     renderer_init();
@@ -26,18 +27,25 @@ static inline void app_deinit()
 {
     scene_deinit();
     ui_deinit();
+    ethnicExit();
     glee_deinit();
 }
 
 int main(int argc, char** argv)
 {
+    unsigned int fullscreen = 0;
     unsigned int seed, *seedptr = NULL;
+
     if (argc > 1) {
-        seed = atoi(argv[1]);
-        seedptr = &seed;
+        if (!strcmp(argv[1], "-f")) {
+            fullscreen++;
+        } else {
+            seed = atoi(argv[1]);
+            seedptr = &seed;
+        }
     }
 
-    app_init(seedptr);
+    app_init(fullscreen, seedptr);
     app_run();
     app_deinit();
     return EXIT_SUCCESS;

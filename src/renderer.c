@@ -10,15 +10,15 @@ static unsigned int lightshader, skyboxshader;
 static inline void shaders_init()
 {
     lightshader = glee_shader_load("assets/shaders/lightv.frag", "assets/shaders/light.frag");
-    glUniform3f(glGetUniformLocation(lightshader, "global_light.direction"), -0.5f, -1.0f, -0.5f);
-    glUniform3f(glGetUniformLocation(lightshader, "global_light.ambient"), 0.0f, 0.0f, 0.0f);
-    glUniform3f(glGetUniformLocation(lightshader, "global_light.diffuse"), 1.0f, 1.0f, 1.0f);
-    glUniform3f(glGetUniformLocation(lightshader, "global_light.specular"), 0.7f, 0.7f, 0.7f);
+    glUniform3f(glGetUniformLocation(lightshader, "global_light.direction"), -0.5f, -0.5f, 0.0f);
+    glUniform3f(glGetUniformLocation(lightshader, "global_light.ambient"), 0.7f, 0.7f, 0.7f);
+    glUniform3f(glGetUniformLocation(lightshader, "global_light.diffuse"), 0.8f, 0.8f, 0.8f);
+    glUniform3f(glGetUniformLocation(lightshader, "global_light.specular"), 0.0f, 0.0f, 0.0f);
 
     glUniform3f(glGetUniformLocation(lightshader, "point_light.position"), 4.0f, 8.0f, 4.0f); 
-    glUniform3f(glGetUniformLocation(lightshader, "point_light.ambient"), 1.0f, 1.0f, 1.0f);
-    glUniform3f(glGetUniformLocation(lightshader, "point_light.diffuse"), 1.0f, 1.0f, 1.0f);
-    glUniform3f(glGetUniformLocation(lightshader, "point_light.specular"), 1.0f, 1.0f, 1.0f);
+    glUniform3f(glGetUniformLocation(lightshader, "point_light.ambient"), 0.0f, 0.0f, 0.0f);
+    glUniform3f(glGetUniformLocation(lightshader, "point_light.diffuse"), 0.0f, 0.0f, 0.0f);
+    glUniform3f(glGetUniformLocation(lightshader, "point_light.specular"), 0.0f, 0.0f, 0.0f);
 
     glUniform1f(glGetUniformLocation(lightshader, "point_light.constant"), .01f);
     glUniform1f(glGetUniformLocation(lightshader, "point_light.linear"), 0.01f);
@@ -29,15 +29,13 @@ static inline void shaders_init()
 }
 
 void renderer_init()
-{
-    int w, h;
-    glee_window_get_size(&w, &h);
-    
+{   
     drawMode = GL_TRIANGLES;
     matId = mat4_id();
 
     shaders_init();
     glee_set_3d_mode();
+    glee_screen_color(0.0, 0.0, 0.5, 1.0);
 }
 
 void render_camera(const Cam3D* restrict cam)

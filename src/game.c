@@ -2,31 +2,6 @@
 
 static Cam3D cam;
 
-static inline void game_input(float deltaTime)
-{
-    const float speed = 4.0;
-    float delta_speed = deltaTime * speed;
-
-    if (glee_key_down(GLFW_KEY_D)) {
-        cam.position = vec3_add(cam.position, vec3_mult(cam.right, delta_speed));
-    }
-    if (glee_key_down(GLFW_KEY_A)) {
-        cam.position = vec3_sub(cam.position, vec3_mult(cam.right, delta_speed));
-    }
-    if (glee_key_down(GLFW_KEY_W)) {
-        cam.position = vec3_add(cam.position, vec3_mult(cam.direction, delta_speed));
-    }
-    if (glee_key_down(GLFW_KEY_S)) {
-        cam.position = vec3_sub(cam.position, vec3_mult(cam.direction, delta_speed));
-    }
-    if (glee_key_down(GLFW_KEY_Z)) {
-        cam.position = vec3_add(cam.position, vec3_mult(cam.up, delta_speed));
-    }
-    if (glee_key_down(GLFW_KEY_X)) {
-        cam.position = vec3_sub(cam.position, vec3_mult(cam.up, delta_speed));
-    }
-}
-
 static inline void game_init_ui()
 {
     int w, h;
@@ -42,14 +17,15 @@ static inline void game_init_ui()
 
 void game_init()
 {
-    cam = cam3D_new(vec3_new(0.0, 30.0, 0.0), 45.0);
+    cam = cam3D_new(vec3_new(15.0, 30.0, 15.0), 45.0);
     game_init_ui();
+    player_init();
 }
 
 void game_update(float deltaTime)
 {   
-    cam3D_update(&cam, runtime_mouse());
+    cam3D_update_smooth(&cam, runtime_mouse());
+    player_update(&cam, deltaTime);
+    scene_update();
     render_camera(&cam);
-    
-    game_input(deltaTime);
 }
